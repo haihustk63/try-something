@@ -9,7 +9,7 @@ export default function (component) {
             }
         }
 
-        componentWillUpdate(nextProps, nextState) {
+        componentDidUpdate(nextProps, nextState) {
             if (nextProps.value !== this.props.value && nextProps.value !== nextState.value) {
                 this.setState({value: nextProps.value});
             }
@@ -24,9 +24,9 @@ export default function (component) {
 
         onChange(e) {
             this.setState({
-                value: e.target.value
+                value: e.target.value.normalize("NFKC")
             });
             this.props.onChange && this.props.onChange(e);
         }
-    }
+    };
 }
